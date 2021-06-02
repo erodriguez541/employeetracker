@@ -27,33 +27,33 @@ const runSearch = () => {
         type: 'rawlist',
         message: 'What would you like to do?',
         choices: [
-          'Find songs by artist',
-          'Find all artists who appear more than once',
-          'Find data within a specific range',
-          'Search for a specific song',
-          'Find artists with a top song and top album in the same year',
+          'View all employees',
+          'View all employees by department',
+          'Add Employee',
+          'Remove Employee',
+          'Update Employee Role',
         ],
       })
       .then((answer) => {
         switch (answer.action) {
           case 'Find songs by artist':
-            artistSearch();
+            employeeSearch();
             break;
   
-          case 'Find all artists who appear more than once':
+          case 'View all employees by department':
             multiSearch();
             break;
   
-          case 'Find data within a specific range':
-            rangeSearch();
+          case 'Add Employee':
+            addEmployee();
             break;
   
-          case 'Search for a specific song':
-            songSearch();
+          case 'Remove Employee':
+            removeEmployee();
             break;
   
-          case 'Find artists with a top song and top album in the same year':
-            songAndAlbumSearch();
+          case 'Update Employee Role':
+            updateEmployeeRole();
             break;
   
           default:
@@ -62,4 +62,3 @@ const runSearch = () => {
         }
       });
   };
-  
