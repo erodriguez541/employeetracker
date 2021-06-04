@@ -36,7 +36,7 @@ const runSearch = () => {
             break;
   
           case 'View all employees by department':
-            multiSearch();
+            viewDept();
             break;
   
           case 'Add Employee':
@@ -62,3 +62,13 @@ const runSearch = () => {
         }
       });
   };
+
+  function employeeSearch(){
+      connection.query("SELECT * FROM employee", (err,data) => {
+          if (err) throw err;
+          console.log("Displaying all employees");
+          console.table(data);
+          runSearch();
+      })
+  };
+  
