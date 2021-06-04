@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS employeetracker_db;
 CREATE DATABASE employeetracker_db;
 
 USE employeetracker_db;
@@ -16,7 +17,7 @@ CREATE TABLE role (
     salary DECIMAL(10,2),
     department_id INT (100),
     PRIMARY KEY (ID)
-)
+);
 
 --Employee
 CREATE TABLE employee(
@@ -26,4 +27,19 @@ CREATE TABLE employee(
     role_id INT,
     manager_id INT,
     PRIMARY KEY (ID)
-)
+);
+
+SELECT name 
+FROM departments 
+LEFT JOIN role 
+ON department.id = role.department_id;
+
+SELECT title, salary, department_id 
+FROM role 
+LEFT JOIN department 
+ON role.department_id = department.id;
+
+SELECT first_name, last_name, role_id, manager_id 
+FROM employee 
+JOIN role 
+ON employee.role_id = role.department_id;
