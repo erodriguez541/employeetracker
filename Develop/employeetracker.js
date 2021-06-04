@@ -1,20 +1,14 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 
+//connection
 const connection = mysql.createConnection({
   host: 'localhost',
-
-  // Your port; if not 3306
   port: 3306,
-
-  // Your username
   user: 'root',
-
-  // Be sure to update with your own MySQL password!
   password: 'password',
   database: 'employee_trackerDB',
 });
-
 connection.connect((err) => {
   if (err) throw err;
   runSearch();
@@ -32,11 +26,12 @@ const runSearch = () => {
           'Add Employee',
           'Remove Employee',
           'Update Employee Role',
+          'Exit'
         ],
       })
       .then((answer) => {
         switch (answer.action) {
-          case 'Find songs by artist':
+          case 'View all Employees':
             employeeSearch();
             break;
   
@@ -55,10 +50,15 @@ const runSearch = () => {
           case 'Update Employee Role':
             updateEmployeeRole();
             break;
+            
+            case 'Exit':
+                connection.end();
+                break;
   
           default:
             console.log(`Invalid action: ${answer.action}`);
             break;
+
         }
       });
   };
