@@ -62,7 +62,7 @@ const runSearch = () => {
         }
       });
   };
-
+//function to view all employees
   function employeeSearch(){
       connection.query("SELECT * FROM employee", (err,data) => {
           if (err) throw err;
@@ -71,7 +71,7 @@ const runSearch = () => {
           runSearch();
       })
   };
-
+//function to view department table
   function viewDepts(){
       connection.query("SELECT * FROM departments", (err, data)=> {
           if (err) throw err;
@@ -80,3 +80,37 @@ const runSearch = () => {
           runsSearch();
       })
   };
+
+  //Function to add an employee
+
+  function addEmployee() {
+      const sql = "SELECT * FROM employee, role";
+      connection.query(sql, (err, results)=>{
+          if (err) throw err;
+          inquirer.prompt([{
+              name: "firstName",
+              type: "input",
+              message: "What is the first name?",
+              validate: (value) => {
+                  if (value){
+                      return true;
+                  }else{
+                      console.log("Please enter the first name.");
+                  }
+              }
+          },
+          {
+              name: "lastName",
+              type: "input",
+              message: "What is the last name?",
+              validate: (value) => {
+                  if (value) {
+                      return true;
+                  }else{
+                      console.log("Please enter in a last name.")
+                  }
+              }
+          }
+          ])
+      })
+  }
